@@ -9,6 +9,16 @@
   </head>
 
   <body>
+
+    <div class="navbar">
+      <ul>
+        <%= link_to 'Home', home_path %>
+        |
+        <%= link_to 'Posts', posts_path %>
+      </ul>
+    </div>
+    <hr>
+    <br>
     <%= yield %>
   </body>
 </html>
