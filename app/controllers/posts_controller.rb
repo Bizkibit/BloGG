@@ -6,8 +6,13 @@ class PostsController < ApplicationController
 
   def create
     k = params.require(:post).permit([:title, :body])
-    @post = Post.create k
-    redirect_to post_path(@post.id)
+    @post = Post.new k
+    if @post.save
+      redirect_to post_path(@post.id)
+    else
+      # notice[:alert] = 'failed to create a post'
+      render :new
+    end
   end
 
   def show
