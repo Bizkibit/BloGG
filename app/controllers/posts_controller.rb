@@ -9,8 +9,10 @@ class PostsController < ApplicationController
     @post = Post.new k
     if @post.save
       redirect_to post_path(@post.id)
+      flash[:notice] = 'new post created'
+
     else
-      # notice[:alert] = 'failed to create a post'
+      flash[:alert] = 'failed to create a post'
       render :new
     end
   end
