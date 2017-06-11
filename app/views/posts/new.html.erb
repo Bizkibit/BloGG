@@ -5,12 +5,15 @@
 <% end %>
 
 <%= form_for @post do |f| %>
-
+<div class="">
   <%= f.label :title %>
   <%= f.text_field :title %>
+</div>
 
+<div class="">
   <%= f.label :body %>
-  <%= f.text_field :body %>
+  <%= f.text_area :body %>
+</div>
 
   <%= f.submit %>
 

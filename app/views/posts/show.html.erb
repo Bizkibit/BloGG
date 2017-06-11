@@ -11,13 +11,17 @@
 
 <h1>Comment</h1>
 
-<%= form_for ([@post, @comment]) do |f| %>
 <div class="form-group">
-  <%= f.text_area :body %>
+  <%= form_for ([@post, @comment]) do |f| %>
+    <%= f.text_area :body %>
+    <%= f.submit  %>
+  <% end  %>
 </div>
-<% end  %>
 
 
-<% @comments.each do |comment| %>
+<% @comments&.each do |comment| %>
+<div class="">
   <%= comment.body %>
+  <hr>
+</div>
 <% end %>
