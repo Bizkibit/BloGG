@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   get '/', to: 'welcome#index', as: :home
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
   # get('/posts/new', { to: 'posts#new', as: :new_post })
   # post('/posts', { to: 'posts#create', as: :posts })
   # get('/posts/:id', { to: 'posts#show', as: :post })
