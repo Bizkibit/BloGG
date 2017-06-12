@@ -17,6 +17,14 @@ class UsersController < ApplicationController
     def edit
       @user = User.find params[:id]
     end
+
+    def update
+      u = params.require(:user).permit([:first_name, :last_name, :email, :password])
+      @user.update u
+      redirect_to home_path
+      flash[:notice] = 'User updated'
+    end
+    
   end
 
 
