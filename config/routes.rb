@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   # patch('/posts/:id', { to: 'posts#update' })
   # delete('/posts/:id', { to: 'posts#destroy' })
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
 end
