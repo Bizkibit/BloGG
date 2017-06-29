@@ -1,15 +1,18 @@
 class CommentsController < ApplicationController
+
   def create
     i = params.require(:comment).permit([:body])
     @post = Post.find params[:post_id]
     @comment = Comment.new i
-    @comment.post= @post
+    @comment.post = @post
+    @comment.user = current_user
     if @comment.save
       flash[:notice] = 'Comment created'
+      redirect_to post_path(@post)
     else
       flash[:alert] = 'Comment failed'
+      render 'posts/show'
     end
-    redirect_to post_path(@post)
   end
 
   def destroy
@@ -20,4 +23,7 @@ class CommentsController < ApplicationController
     flash[:alert] = 'comment deleted'
     redirect_to post_path(@post)
   end
+
+  private
+
 end

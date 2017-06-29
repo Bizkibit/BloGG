@@ -3,7 +3,7 @@
 <div class="form-group">
   <h3><%= @post.title %></h3>
   <p><%= @post.body %></p>
-  <p><strong>Author: </strong><%= @post.user %></p>
+  <p><strong>Author: </strong><%= @post.user.full_name %></p>
 
 </div>
 
@@ -19,7 +19,9 @@
 
 <div class="form-group">
   <%= form_for ([@post, @comment]) do |f| %>
+  <div class="">
     <%= f.text_area :body %>
+  </div>
     <%= f.submit  %>
   <% end  %>
 </div>
@@ -29,7 +31,7 @@
 <div class="container">
   <div class="row">
     <%= comment.body %>
-    <p><strong>Author: </strong><%= @comment.user %></p>
+    <p><strong>Author: </strong><%= comment.user.full_name %></p>
     <%= link_to 'Delete', post_comment_path(@post,comment), method: :delete %>
   </div>
   <hr>

@@ -7,9 +7,10 @@ class PostsController < ApplicationController
   def create
     k = params.require(:post).permit([:title, :body])
     @post = Post.new k
+    @post.user = current_user
     if @post.save
-      redirect_to post_path(@post.id)
       flash[:notice] = 'new post created'
+      redirect_to post_path(@post.id)
 
     else
       flash[:alert] = 'failed to create a post'
@@ -19,8 +20,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find params[:id]
-    @comment = @post.comments.new
-    # @comment = Comment.new
+    # @comment = @post.comments.new
+    @comment = Comment.new
     @comments = @post.comments.order(created_at: :desc)
   end
 
